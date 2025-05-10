@@ -41,4 +41,5 @@ struct data
         double accumulator;
 };
 
+void on_process(void *userdata);
 #endif
