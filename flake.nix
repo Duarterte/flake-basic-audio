@@ -19,7 +19,7 @@
         pipewire
       ];
       buildPhase = ''
-        $CC main.c -o main $(pkg-config --cflags --libs libpipewire-0.3) -lm -lpthread
+        $CC main.c sound.c -o main $(pkg-config --cflags --libs libpipewire-0.3) -lm -lpthread
       '';
       installPhase = ''
         mkdir -p $out/bin

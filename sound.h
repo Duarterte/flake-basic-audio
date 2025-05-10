@@ -28,11 +28,10 @@ enum
 
 static const double tones[] = {261.6256, 293.6648, 329.6276, 349.2282, 391.9954, 440.00, 493.8833};
 
-static atomic_bool running = ATOMIC_VAR_INIT(true);
-static struct pw_stream *stream = NULL;
-static struct pw_main_loop *main_loop = NULL;
-
-double frequency = 440.00;
+extern atomic_bool running;
+extern struct pw_stream *stream;
+extern struct pw_main_loop *main_loop;
+extern double frequency;
 
 struct data
 {
@@ -42,4 +41,13 @@ struct data
 };
 
 void on_process(void *userdata);
+void *wait_n_stop(void *arg);
+void playSound(double freq, uint32_t duration);
+
+static const struct pw_stream_events stream_events = {
+    PW_VERSION_STREAM_EVENTS,
+    .process = on_process,
+};
+
+
 #endif
